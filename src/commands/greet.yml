@@ -6,7 +6,7 @@ description: >
 parameters:
   greeting:
     type: string
-    default: "Hello"
+    default: "HOLA"
     description: "Select a proper greeting"
 steps:
   - run:
