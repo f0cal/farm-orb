@@ -23,5 +23,6 @@
                 sudo apt install openvpn
                 python -m venv /tmp/env
                 source /tmp/env/bin/activate
-                git clone https://github.com/f0cal/f0cal.farm.client.git /tmp/f0cal.farm/client
+                pip install --upgrade pip
+                git clone https://github.com/f0cal/f0cal.farm.client.git /tmp/f0cal.farm.client
                 pip install  /tmp/f0cal.farm.client/ -c /tmp/f0cal.farm.client/constraints.txt
