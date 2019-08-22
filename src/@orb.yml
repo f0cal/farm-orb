@@ -1,9 +1,5 @@
 version: 2.1
 
 description: >
-  Sample orb description
-  # What will your orb allow users to do?
-  # Descriptions should be short, simple, and clear.
+  This orb helps with the testing and build of code on varoius edge devices on the F0cal Device Farm
 
-orbs:
-  hello: circleci/hello-build@0.0.5 # Sample imported orb

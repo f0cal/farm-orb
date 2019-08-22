@@ -1,0 +1,27 @@
+description: >
+  Use the f0cal cli to request an edge device and wait for it to be ready
+parameters:
+  device_type:
+    description: The type of the device, should be one of { nano, tx2, tx1, pi }
+    type: string
+  ssh_key_name:
+    description: The name of the ssh key in f0cal. Should correspond to the private key env var set here. See docs for more info
+    type: string
+
+steps:
+  - run:
+      name: Request a device
+      command: |
+        # Blocking call that wait for a device to be ready. Writes current device id to .f0cal_instance
+        source /tmp/env/bin/activate
+        f0cal farm instance create  -t << parameters.device_type >>  -kp << parameters.ssh_key_name >> --wait
+        echo "export DEVICE_IP=$(f0cal farm instance get ip)" >> $BASH_ENV
+        source $BASH_ENV
+        echo "DEVICE_IP set to $DEVICE_IP"
+
+  - run:
+      name: Test the new device
+      command: |
+        source $BASH_ENV
+        echo "DEVICE_IP set to $DEVICE_IP"
+        ssh f0cal@$DEVICE_IP hostname

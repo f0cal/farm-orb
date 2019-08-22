@@ -1,0 +1,40 @@
+description: >
+  Run steps on a device on the F0cal device farm
+executor: default
+parameters:
+  device_type:
+    description: The type of the device, should be one of { nano, tx2, tx1, raspi }
+    type: string
+  ssh_key_name:
+    description: The name of the ssh key in f0cal. Should correspond F0CAL_PRIVATE_KEY env var set here. See docs for more info
+    type: string
+  path:
+    description: The path for the files should be copied to the edge device. Recursive
+    type: string
+    default: "*"
+  api_key:
+    description: Your f0cal api key
+    type: string
+  ssh_key_fingerprint:
+    description: The fingerprint of the private key. This needs to first be added to the project in circle
+    type: string
+  steps:
+    type: steps
+    description: Build steps to run on the edge device.
+steps:
+  - checkout
+  - install
+  - setup:
+       api_key: <<parameters.api_key>>
+       ssh_key_fingerprint: << parameters.ssh_key_fingerprint >>
+  - request_device:
+      device_type: << parameters.device_type>>
+      ssh_key_name: << parameters.ssh_key_name >>
+  - copy_files:
+      path: << parameters.path >>
+  - steps: << parameters.steps >>
+  - run:
+      name: stop device
+      command: |
+        source /tmp/env/bin/activate
+        f0cal farm instance stop

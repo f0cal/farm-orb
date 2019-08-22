@@ -1,0 +1,18 @@
+description: >
+  Run commands over on the edge device via ssh
+parameters:
+  command:
+    description: the command to run on edge device
+    type: string
+    default: "*"
+
+steps:
+  - run:
+      name: run
+      command: |
+        ssh f0cal@${DEVICE_IP} << parameters.command >>
+
+
+
+
+

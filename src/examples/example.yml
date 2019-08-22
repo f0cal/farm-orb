@@ -1,14 +1,22 @@
 description: >
-  Sample example description.
-  # What will this example document?
-  # Descriptions should be short, simple, and clear.
+  This sample shows how to use the F0cal orb to run your tests on an Nvidia Nano
 usage:
   version: 2.1
   orbs:
-    foo: bar/foo@1.2.3
-  jobs:
-    build:
-      machine: true
-      steps:
-        - foo/hello:
-            username: "Anna"
+    f0cal: f0cal/f0cal_device_farm@1.0.0
+  workflows:
+    build-test-deploy:
+      jobs:
+        - farm/with_f0cal_device:
+            name: test_device
+            api_key: "<YOUR F0CAL API KEY >"
+            device_type: raspi
+            ssh_key_name: my_key_pair
+            ssh_key_fingerprint: "<YOUR SSH _KEY FINGER PRINT>"
+            steps:
+              - farm/f0cal_run:
+                  command: cmake .
+              - farm/f0cal_run:
+                  command: make
+              - farm/f0cal_run:
+                  command: ./bin/test
