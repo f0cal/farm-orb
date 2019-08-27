@@ -1,9 +1,9 @@
 description: >
-  This sample shows how to use the F0cal orb to run your tests on an Nvidia Nano
+  This sample shows how to use the F0cal orb to run your tests on a Raspberry PI
 usage:
   version: 2.1
   orbs:
-    f0cal: f0cal/f0cal_device_farm@1.0.0
+    farm: f0cal/farm@1.0.0
   workflows:
     build-test-deploy:
       jobs:
@@ -12,7 +12,7 @@ usage:
             api_key: "<YOUR F0CAL API KEY >"
             device_type: raspi
             ssh_key_name: my_key_pair
-            ssh_key_fingerprint: "<YOUR SSH _KEY FINGER PRINT>"
+            ssh_key_fingerprint: "<YOUR SSH_KEY FINGER PRINT>"
             steps:
               - farm/f0cal_run:
                   command: cmake .

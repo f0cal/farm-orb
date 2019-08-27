@@ -20,8 +20,6 @@ steps:
         echo "DEVICE_IP set to $DEVICE_IP"
 
   - run:
-      name: Test the new device
+      name: Verify the device connection
       command: |
-        source $BASH_ENV
-        echo "DEVICE_IP set to $DEVICE_IP"
-        ssh f0cal@$DEVICE_IP hostname
+        echo Connected to "$(ssh f0cal@$DEVICE_IP hostname)"

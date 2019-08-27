@@ -2,7 +2,7 @@ description: >
   Run commands over on the edge device via ssh
 parameters:
   command:
-    description: the command to run on edge device
+    description: The command to run on edge device
     type: string
     default: "*"
 

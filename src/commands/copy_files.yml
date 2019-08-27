@@ -1,16 +1,16 @@
-        description: >
-          Use the f0cal cli to request an edge device and wait for it to be ready
-        parameters:
-          path:
-            description: The path for the files should be copied to the edge device. Recursive
-            type: string
-            default: "*"
+description: >
+  Copy files needed for the build to the edge device
+parameters:
+  path:
+    description: The path for the files should be copied to the edge device. Recursive
+    type: string
+    default: "*"
 
-        steps:
-          - run:
-              name: Copy File
-              command: |
-                scp -r << parameters.path >> f0cal@${DEVICE_IP}:
+steps:
+  - run:
+      name: Copy File
+      command: |
+        scp -r << parameters.path >> f0cal@${DEVICE_IP}:
 
 
 

@@ -1,5 +1,5 @@
 description: >
- Setup F0cal CLI, VPN key, and  ssh keys
+ Setup F0cal CLI, VPN key, and  SSH keys
 parameters:
   api_key:
     description: Your f0cal api key
@@ -8,24 +8,16 @@ parameters:
     description: The fingerprint of the private key. This needs to first be added to the project in circle
     type: string
 steps:
-  - run:
-      name: Echo parra
-      command: echo << parameters.ssh_key_fingerprint >>
   - add_ssh_keys:
       fingerprints:
         - << parameters.ssh_key_fingerprint >>
   - run:
-      name: Test SSH KEY
+      name: Configure f0cal cli and connect to f0cal vpn
       command: |
-        ls ~/.ssh
-        cat ~/.ssh/id_rsa
-  - run:
-      name: connect  to f0cal vpn
-      command: |
+       ${<<parameters.api_key>>:?"<<parameters.api_key>> Env Variable not empty!"}
         source /tmp/env/bin/activate
-        f0cal farm configure -k <<parameters.api_key>>
+        f0cal farm configure -k $<<parameters.api_key>>
         f0cal farm vpn create >> f0cal_vpn.txt
         sudo openvpn --config f0cal_vpn.txt --daemon
+        echo 'Waiting for openvpn client to initialize'
         sleep 20
-        ping -c 4 192.168.1.2
-        ssh as@192.168.1.20 hostname
