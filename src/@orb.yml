@@ -4,5 +4,9 @@ description: >
   F0cal Farm Orb simplifies interactions with the F0cal device farm allowing you to  run your builds on a variety of edge
   compute  devices including the Raspberry Pi, Jetson Nano, and the Jetson TX1 and TX2 and many more.
 
-  
+  To gain access to the F0cal device farm please visit https://www.f0cal.com
+
+  Orb source: https://github.com/f0cal/farm-orb
+
+
 

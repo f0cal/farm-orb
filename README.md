@@ -2,6 +2,7 @@
 This orb simplifies interactions with the F0cal device farm allowing you to 
 run your builds on a variety of edge compute  devices including the Raspberry Pi, Jetson Nano, and the Jetson TX1 and TX2 and many more.
 
+To gain access to the F0cal device farm please visit <https://www.f0cal.com>
 
 #### Example usage 
 ```
@@ -16,7 +17,7 @@ usage:
       jobs:
         - farm/with_f0cal_device:
             name: test_device
-            api_key: "<YOUR F0CAL API KEY >"
+            api_key: "<YOUR F0CAL API KEY ENV VAR >"
             device_type: raspi
             ssh_key_name: my_key_pair
             ssh_key_fingerprint: "<YOUR SSH_KEY FINGER PRINT>"

@@ -1,5 +1,5 @@
 description: >
-  This sample shows how to use the F0cal orb to run your tests on a Raspberry PI
+  This sample shows how to use the F0cal orb to run a build and tests on a Raspberry PI
 usage:
   version: 2.1
   orbs:
@@ -9,7 +9,7 @@ usage:
       jobs:
         - farm/with_f0cal_device:
             name: test_device
-            api_key: "<YOUR F0CAL API KEY >"
+            api_key: "<YOUR F0CAL API KEY ENV VAR >"
             device_type: raspi
             ssh_key_name: my_key_pair
             ssh_key_fingerprint: "<YOUR SSH_KEY FINGER PRINT>"
