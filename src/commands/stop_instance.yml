@@ -1,0 +1,14 @@
+description: >
+  Stop the current device listed in .f0cal_instance
+steps:
+  - run:
+      name: stop device
+      when: always
+      command: |
+        source /tmp/env/bin/activate
+        f0cal farm instance stop
+
+
+
+
+

@@ -1,0 +1,28 @@
+description: >
+  Get the f0cal cli and other dependencies
+steps:
+  - run:
+# TODO REMOVE THIS ONCE PYTHON pyenv is fixed https://discuss.circleci.com/t/issue-with-python-install-on-machine-executor/31982
+      name: "Fix pyenv dependencies"
+      command: |
+        pyenv uninstall  -f 3.6.5
+        sudo apt-get update
+        sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+        libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+        xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+        pyenv install 3.6.5
+
+  - run:
+      name: "Set Python Version"
+      command: pyenv global 3.6.5
+
+  - run:
+      name: Install F0cal CLI and dependencies
+      command: |
+        sudo apt update
+        sudo apt install openvpn
+        python -m venv /tmp/env
+        source /tmp/env/bin/activate
+        pip install --upgrade pip
+        git clone https://github.com/f0cal/f0cal.farm.client.git /tmp/f0cal.farm.client
+        pip install  /tmp/f0cal.farm.client/ -c /tmp/f0cal.farm.client/constraints.txt

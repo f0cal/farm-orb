@@ -1,9 +1,12 @@
 version: 2.1
 
 description: >
-  Sample orb description
-  # What will your orb allow users to do?
-  # Descriptions should be short, simple, and clear.
+  F0cal Farm Orb simplifies interactions with the F0cal device farm allowing you to  run your builds on a variety of edge
+  compute  devices including the Raspberry Pi, Jetson Nano, and the Jetson TX1 and TX2 and many more.
 
-orbs:
-  hello: circleci/hello-build@0.0.5 # Sample imported orb
+  To gain access to the F0cal device farm please visit https://www.f0cal.com
+
+  Orb source: https://github.com/f0cal/farm-orb
+
+
+
